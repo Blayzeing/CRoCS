@@ -34,8 +34,15 @@ PAUSED_STATE_EFFECTS = {RGBLightsToColour(R_PIN, G_PIN, B_PIN, 255, 0, 0)};
 ### Other Examples (TODO: Sort out)
 ```
 // State-button action configuration
-PAUSED_STATE_BUTTON_TRANSITIONS = {
-                                    ButtonListener(PAUSE_BUTTON, FIGHTING), // If the pause button is pressed again, go back to fighting
-                                    ButtonListener(RESET_BUTTON, PRE_FIGHT) // If the reset button is pressed, go to PRE_FIGHT
-                                  };
+PAUSED_STATE_BUTTON_BEHAVIOURS =
+{
+  ButtonTransitionListener(PAUSE_BUTTON, FIGHTING), // If the pause button is pressed again, go back to fighting
+  ButtonTransitionListener(RESET_BUTTON, PRE_FIGHT) // If the reset button is pressed, go to PRE_FIGHT
+};
+PRE_FIGHT_STATE_BUTTON_BEHAVIOURS =
+{
+  ButtonFunctionListener(PIN_TIMER_BUTTON, []{round_length+=10; numeric_display_2.show(round_length)})
 ```
+
+### Serial/Computer Interfacing
+Sometimes you'll want more than what can be provided from the 
