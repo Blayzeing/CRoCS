@@ -1,4 +1,4 @@
-# Cobat Robotics Clock System (CRoCS)
+# Combat Robotics Clock System (CRoCS)
 CRoCs is a highly-configurable arduino-based clock and timer system for combat robotics events.
 It's state-based with program-configurable lighting & count-down systems, designed for easy customisation and optional run-time configurable match lengths.
 
@@ -10,11 +10,11 @@ graph TD;
   COUNTDOWN --3 seconds elapse--> FIGHTING
   COUNTDOWN --pause button pressed --> PRE_FIGHT
   COUNTDOWN --reset button pressed --> PRE_FIGHT
-  FIGHTING --round time elapses--> CEASE
-  FIGHTING --pause button pressed--> CEASE
   FIGHTING --reset button pressed--> PRE_FIGHT
-  CEASE --round is resumed--> FIGHTING
-  CEASE --reset button pressed--> PRE_FIGHT
+  PAUSED --round is resumed--> FIGHTING
+  PAUSED --reset button pressed--> PRE_FIGHT
+  FIGHTING --pause button pressed--> PAUSED
+  FIGHTING --round time elapses--> CEASE --cease animation plays--> PRE_FIGHT
 ```
 
 While in the `FIGHTING` state, secondary timers can be configured to be activated for pinning, pits and other special events.
